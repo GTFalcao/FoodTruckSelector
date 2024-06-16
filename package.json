@@ -1,0 +1,24 @@
+{
+  "name": "food-truck-selector",
+  "version": "0.0.1",
+  "description": "An application to help you find the best food trucks to visit",
+  "author": "Guilherme Falcao",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.1",
+    "status-code-enum": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.2",
+    "typescript": "^5.4.5"
+  }
+}
