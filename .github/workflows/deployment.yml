@@ -10,16 +10,16 @@ jobs:
   deploy:
     name: Deploy
     runs-on: self-hosted
-    timeout-minutes: 15
+    timeout-minutes: 30
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
+      # - name: Setup Node
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 16.x
 
       - name: Install dependencies
         run: npm set-script prepare '' && npm i
