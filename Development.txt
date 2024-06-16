@@ -1,0 +1,3 @@
+I set up an Amazon EC2 instance, configured it to work as my self-hosted Github Actions runner, and installed Nodejs and its required tools to be able to run the application.
+
+That installation can take some time, so while it's running I'm setting up the project's typescript and ESLint configs to get started.
