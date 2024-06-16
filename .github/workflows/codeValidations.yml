@@ -1,0 +1,29 @@
+on:
+  pull_request:
+    branches:
+      - main
+
+name: Code validations
+
+jobs:
+  tsc:
+    name: Typescript + ESLint
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      - name: Installing dependencies
+        run: npm i
+
+      - name: Compiling Typescript
+        run: npm run tsc
+
+      - name: Running ESLint
+        run: npm run lint-workflow
