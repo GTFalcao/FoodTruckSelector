@@ -1,6 +1,6 @@
 I set up an Amazon EC2 instance, configured it to work as my self-hosted Github Actions runner, and installed Nodejs and its required tools to be able to run the application.
 
-That installation can take some time, so while it's running I'm setting up the project's typescript and ESLint configs to get started.
+That installation can take some time, hence why I went for it first - while it's running, I'm setting up the project's Typescript and ESLint configs to get started.
 I'm also adding a couple of husky hooks for smooth installation and, more importantly, having ESLint and Prettier run when committing.
 
-Now, I'm getting the bare-bones of the Express application running.
+Now, I'm getting the bare-bones of the Express application running. After that, I'm setting up code validations - compiling Typescript and running ESLint - and the application deployment, both via Github Actions.
