@@ -5,6 +5,9 @@ import StatusCode from "status-code-enum";
 
 const PORT = process.env.PORT ?? constants.DEFAULT_PORT;
 
+const wrongTypeVariable: string = 5;
+console.log(wrongTypeVariable);
+
 const app = express();
 app.use(express.json({ limit: constants.DEFAULT_JSON_SIZE_LIMIT }));
 app.use((error: Error, _req: Request, res: Response, next: NextFunction) => {
