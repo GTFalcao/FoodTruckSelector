@@ -2,3 +2,5 @@ I set up an Amazon EC2 instance, configured it to work as my self-hosted Github 
 
 That installation can take some time, so while it's running I'm setting up the project's typescript and ESLint configs to get started.
 I'm also adding a couple of husky hooks for smooth installation and, more importantly, having ESLint and Prettier run when committing.
+
+Now, I'm getting the bare-bones of the Express application running.
