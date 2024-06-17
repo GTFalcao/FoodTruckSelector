@@ -15,7 +15,7 @@ export const foodTruckModel = model(
     },
     foodItems: {
       type: [String],
-      default: [],
+      required: true,
     },
     otherData: {
       type: [String],
