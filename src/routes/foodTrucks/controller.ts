@@ -3,14 +3,14 @@ import { Request, Response } from "express";
 import service from "./service";
 
 export default {
-  async getAll({ query: { update } }: Request, res: Response) {
-    const shouldUpdate = update || (await service.shouldFetchNewData());
-    console.log(
-      shouldUpdate ? "Fetching updated data from source" : "Using cached data",
-    );
-    const data = await (shouldUpdate
-      ? service.updateAndReturnData()
-      : service.listFoodTrucks());
+  async getAll({ query: { foodItems } }: Request, res: Response) {
+    const shouldUpdate = await service.shouldFetchNewData();
+    if (shouldUpdate) {
+      await service.fetchAndUpdateData();
+    }
+
+    const filter = foodItems?.toString?.();
+    const data = await service.listFoodTrucks(filter);
 
     return res.status(200).send(data);
   },

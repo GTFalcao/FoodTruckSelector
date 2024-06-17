@@ -11,7 +11,7 @@ export default {
     return !lastUpdate || now - lastUpdate > constants.CACHE_TIME_MS;
   },
 
-  async updateAndReturnData() {
+  async fetchAndUpdateData() {
     const data = await this.getData();
     const mappedData = data.map(convertFoodTruckData);
 
@@ -20,8 +20,6 @@ export default {
     );
 
     await repository.setLastUpdate(Date.now());
-
-    return mappedData;
   },
 
   async getData(): Promise<Record<string, string>[]> {
@@ -29,13 +27,28 @@ export default {
     return csv().fromString(data);
   },
 
-  async listFoodTrucks() {
+  async listFoodTrucks(foodItems: string) {
     const response = await repository.listFoodTrucks();
-    return response;
-    // return response.map(({ otherData, ...args }) => ({
-    //   ...args,
-    //   otherData: JSON.parse(otherData),
-    // }))
+    let mappedResponse = response.map(
+      ({ locationId, foodItems, otherData }) => ({
+        locationId,
+        foodItems,
+        ...JSON.parse(otherData),
+      }),
+    );
+
+    if (foodItems) {
+      const arrItems = foodItems
+        .split(",")
+        .map((item) => item.trim().toLowerCase());
+      mappedResponse = mappedResponse.filter(({ foodItems }) =>
+        foodItems.some((item: string) =>
+          arrItems.some((filter) => item.toLowerCase().includes(filter)),
+        ),
+      );
+    }
+
+    return mappedResponse;
   },
 
   async clearFoodTrucks() {

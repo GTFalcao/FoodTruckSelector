@@ -6,3 +6,7 @@ I'm also adding a couple of husky hooks for smooth installation and, more import
 Now, I'm getting the bare-bones of the Express application running. After that, I'm setting up code validations - compiling Typescript and running ESLint - and the application deployment, both via Github Actions. This proved to be quite the hassle to configure, due to the setup-node action freezing (searching for this showed it has happened to others, too, but I could not find a reliable solution) and I ended up with a far from optimal solution, using the runner's own installed Nodejs. It takes far longer (~10 min) to perform the dependency installation on each run, but it does succeed, so I'm leaving it at this to focus on the code.
 
 I'm connecting to a MongoDB database and creating an entry to log the timestamp of the last data update - to establish a minimum amount of time before the application updates its food truck data, so as not to fetch this information every time a request is made, but also not keeping it entirely out-of-date.
+
+After a lot of issues, I'm halting my efforts on attempting to make the Amazon EC2 instance accessible, and will instead provide it as a local-running application for now. This is the first time I use Amazon EC2 and despite apparently configuring the proper network rules, it's still unreachable.
+
+I'm adding the main functionality to the core endpoint of listing food trucks, to allow filtering / searching by one or more food items.
