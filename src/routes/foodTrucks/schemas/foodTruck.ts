@@ -18,7 +18,7 @@ export const foodTruckModel = model(
       required: true,
     },
     otherData: {
-      type: [String],
+      type: String,
       required: true,
     },
   }),

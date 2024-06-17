@@ -1,4 +1,5 @@
 import axios from "axios";
+import csv from "csvtojson";
 import constants from "./constants";
 import repository from "./repository";
 import { convertFoodTruckData } from "./utils";
@@ -12,25 +13,7 @@ export default {
 
   async updateAndReturnData() {
     const data = await this.getData();
-    const [header, ...rows] = data
-      .replace(constants.COMMA_REGEXP, constants.COMMA_REPLACEMENT)
-      .split("\n");
-    const keys = header.split(",");
-
-    const mappedData = rows.map((row) =>
-      convertFoodTruckData(
-        row.split(",").reduce(
-          (obj, value, index) => {
-            obj[keys[index]] = value.replace(
-              new RegExp(constants.COMMA_REPLACEMENT, "g"),
-              ",",
-            );
-            return obj;
-          },
-          {} as Record<string, string>,
-        ),
-      ),
-    );
+    const mappedData = data.map(convertFoodTruckData);
 
     await Promise.allSettled(
       mappedData.map((item) => repository.upsertFoodTruck(item)),
@@ -41,12 +24,21 @@ export default {
     return mappedData;
   },
 
-  async getData() {
+  async getData(): Promise<Record<string, string>[]> {
     const { data } = await axios<string>(constants.DATA_ENDPOINT);
-    return data;
+    return csv().fromString(data);
   },
 
   async listFoodTrucks() {
-    return repository.listFoodTrucks();
+    const response = await repository.listFoodTrucks();
+    return response;
+    // return response.map(({ otherData, ...args }) => ({
+    //   ...args,
+    //   otherData: JSON.parse(otherData),
+    // }))
+  },
+
+  async clearFoodTrucks() {
+    return repository.deleteFoodTrucks();
   },
 };
