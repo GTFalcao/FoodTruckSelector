@@ -19,11 +19,9 @@ Things I would do if I had more time and if the application was to grow:
 
 - more filtering options, rather than just food items;
 
-- OpenAPI spec;
+- Postman collection and OpenAPI spec;
 
 - proper hosting of the application with Docker;
-
-- proper environment variable handling of the connection string,
 
 - probably many other things that would come up along the way.
 
