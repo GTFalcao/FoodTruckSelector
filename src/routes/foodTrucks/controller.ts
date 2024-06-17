@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import service from "./service";
 
 export default {
-  async getAll({ query: { foodItems } }: Request, res: Response) {
+  async get({ query: { foodItems } }: Request, res: Response) {
     const shouldUpdate = await service.shouldFetchNewData();
     if (shouldUpdate) {
       await service.fetchAndUpdateData();

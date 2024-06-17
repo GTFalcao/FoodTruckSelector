@@ -6,8 +6,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "lint": "eslint ./src --ext .ts --fix",
-    "lint-workflow": "eslint ./src --ext .ts",
+    "lint": "eslint ./src/**/*.ts --fix",
+    "lint-workflow": "eslint ./src/**/*.ts",
     "lint-staged": "lint-staged",
     "prepare": "husky install",
     "prettier": "prettier --write src",

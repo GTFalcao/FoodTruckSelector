@@ -52,6 +52,7 @@ export default {
   },
 
   async clearFoodTrucks() {
+    await repository.setLastUpdate(0);
     return repository.deleteFoodTrucks();
   },
 };

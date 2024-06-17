@@ -7,6 +7,26 @@ Now, I'm getting the bare-bones of the Express application running. After that, 
 
 I'm connecting to a MongoDB database and creating an entry to log the timestamp of the last data update - to establish a minimum amount of time before the application updates its food truck data, so as not to fetch this information every time a request is made, but also not keeping it entirely out-of-date.
 
-After a lot of issues, I'm halting my efforts on attempting to make the Amazon EC2 instance accessible, and will instead provide it as a local-running application for now. This is the first time I use Amazon EC2 and despite apparently configuring the proper network rules, it's still unreachable.
+After a lot of issues, I'm halting my efforts on attempting to make the Amazon EC2 instance accessible, and will instead provide it as a local-running application for now. Despite apparently configuring the proper network rules, it's still unreachable.
 
 I'm adding the main functionality to the core endpoint of listing food trucks, to allow filtering / searching by one or more food items.
+
+Things I would do if I had more time and if the application was to grow:
+
+- a front-end, simple as may be - it'd be great to display the info and make filtering intuitive;
+
+- proper error handling;
+
+- more filtering options, rather than just food items;
+
+- OpenAPI spec;
+
+- proper hosting of the application with Docker;
+
+- proper environment variable handling of the connection string,
+
+- probably many other things that would come up along the way.
+
+
+This is the first time I actually attempt to set-up an Amazon EC2 instance, rather than relying on an Ops team for it, and so it consumed a significant portion of my time on this.
+Overall, this was an excellent experience and challenge, and I thank you for it!
