@@ -6,7 +6,7 @@ import StatusCode from "status-code-enum";
 const PORT = process.env.PORT ?? constants.DEFAULT_PORT;
 
 const app = express();
-app.use(express.json({ limit: constants.DEFAULT_JSON_SIZE_LIMIT }));
+app.use(express.json({ limit: constants.JSON_SIZE_LIMIT }));
 app.use((error: Error, _req: Request, res: Response, next: NextFunction) => {
   if (error) {
     return res.status(StatusCode.ServerErrorInternal).json({ error });

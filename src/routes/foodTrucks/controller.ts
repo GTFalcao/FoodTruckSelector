@@ -1,11 +1,14 @@
-import axios from "axios";
 import { Request, Response } from "express";
-import constants from "../../constants";
+
+import service from "./service";
 
 export default {
   async fetchLatestData(_req: Request, res: Response) {
-    const data = await axios(constants.DATA_ENDPOINT);
-    console.log(data);
-    return res.sendStatus(204);
+    const shouldUpdate = service.shouldFetchNewData();
+    const data = await (shouldUpdate
+      ? service.updateAndReturnData()
+      : service.getData());
+
+    return res.status(200).send(data);
   },
 };
