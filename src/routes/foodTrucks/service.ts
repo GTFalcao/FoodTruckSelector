@@ -5,7 +5,6 @@ import { convertFoodTruckData } from "./utils";
 
 export default {
   async shouldFetchNewData() {
-    await repository.setLastUpdate(Date.now());
     const lastUpdate = await repository.getLastUpdate();
     const now = Date.now();
     return !lastUpdate || now - lastUpdate > constants.CACHE_TIME_MS;
@@ -18,7 +17,7 @@ export default {
       .split("\n");
     const keys = header.split(",");
 
-    const mappedData = rows.slice(0, 2).map((row) =>
+    const mappedData = rows.map((row) =>
       convertFoodTruckData(
         row.split(",").reduce(
           (obj, value, index) => {

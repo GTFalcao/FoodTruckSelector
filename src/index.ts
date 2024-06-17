@@ -1,7 +1,9 @@
 import express, { Request, Response, NextFunction } from "express";
-import constants from "./constants";
+import constants from "./utils/constants";
 import router from "./router";
 import StatusCode from "status-code-enum";
+import { connectMongoDb } from "./utils/database";
+import "dotenv/config";
 
 const PORT = process.env.PORT ?? constants.DEFAULT_PORT;
 
@@ -21,3 +23,4 @@ app.listen(PORT, () => {
   console.log(`Port: ${PORT}`);
   console.log(`\x1b[32mFood Truck Selector is running...\x1b[0m`);
 });
+connectMongoDb();

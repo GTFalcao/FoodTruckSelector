@@ -4,10 +4,13 @@ import service from "./service";
 
 export default {
   async fetchLatestData(_req: Request, res: Response) {
-    const shouldUpdate = service.shouldFetchNewData();
+    const shouldUpdate = await service.shouldFetchNewData();
+    console.log(
+      shouldUpdate ? "Fetching updated data from source" : "Using cached data",
+    );
     const data = await (shouldUpdate
       ? service.updateAndReturnData()
-      : service.getData());
+      : service.listFoodTrucks());
 
     return res.status(200).send(data);
   },
